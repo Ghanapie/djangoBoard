@@ -1,0 +1,6 @@
+*.pyc
+
+# Logs and databases #
+######################
+*.log
+__pycache__/
