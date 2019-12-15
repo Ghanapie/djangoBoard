@@ -1,0 +1,77 @@
+{% extends 'board/main.html' %}
+{% block content %}
+<!-- 검색 -->
+<div>
+    <table class="table">
+        <colgroup>
+            <colgroup>
+                <col width="?" />
+                <col width="?" />
+            </colgroup>
+        <tbody>
+            <tr>
+                <td>검색조건</td>
+                <td>
+                    <select name="searchOption">
+                        <option value="">제목</option>
+                        <option value="학생">작성자</option>
+                    </select>
+                </td>
+                <td>검색어</td>
+                <td>
+                    <input type="text" name="searchText" />
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div style="margin : 8px;">
+    <button type="button" class="btn btn-primary" style="float:right; margin:8px;" onclick="location.href='{% url 'insertData' %}'"> 글쓰기</button>
+</div>
+
+<!-- 테이블 -->a
+<div>
+    <table class="table">
+        <colgroup>
+            <colgroup>
+                <col width="?" />
+                <col width="?" />
+                <col width="?" />
+                <col width="?" />
+            </colgroup>
+
+        <thead>
+            <tr>
+                <td>No</td>
+                <td>제목</td>
+                <td>작성자</td>
+                <td>작성일자</td>
+                <td>조회수</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for post in postList %}
+            <tr>
+                <td>
+                    {{forloop.counter}}
+                </td>
+                <td>
+                    {{post.title}}
+                </td>
+                <td>
+                    {{post.text}}
+                </td>
+                <td>
+                    {{post.published_date|date:'Y-m-d H:i'}}
+                </td>
+                <td>
+                    0
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}
