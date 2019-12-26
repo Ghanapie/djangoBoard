@@ -1,10 +1,12 @@
 {% extends 'board/main.html' %}
 {% block content %}
 <!-- 검색 -->
-<div>
+<div class="postSearch">
     <table class="table">
         <colgroup>
             <colgroup>
+                <col width="?" />
+                <col width="?" />
                 <col width="?" />
                 <col width="?" />
             </colgroup>
@@ -26,12 +28,11 @@
     </table>
 </div>
 
-<div style="margin : 8px;">
-    <button type="button" class="btn btn-primary" style="float:right; margin:8px;" onclick="location.href='{% url 'insertData' %}'"> 글쓰기</button>
-</div>
-
-<!-- 테이블 -->a
-<div>
+<!-- 테이블 -->
+<div class="postTable">
+    <div style="margin : 8px;">
+        <button type="button" class="btn btn-primary" style="float:right; margin:8px;" onclick="location.href='{% url 'post_create' %}'"> 글쓰기</button>
+    </div>
     <table class="table">
         <colgroup>
             <colgroup>
@@ -40,7 +41,6 @@
                 <col width="?" />
                 <col width="?" />
             </colgroup>
-
         <thead>
             <tr>
                 <td>No</td>
@@ -51,13 +51,14 @@
             </tr>
         </thead>
         <tbody>
-            {% for post in postList %}
+            {% for post in post_list %}
             <tr>
                 <td>
                     {{forloop.counter}}
                 </td>
                 <td>
-                    {{post.title}}
+                    <a href="#" onclick="location.href='{% url 'post_detail' pk=post.pk  %}'" > {{post.title}} </a>
+                    <a href="{% url 'post_detail' pk=post.pk %}" style="color:black">({{ post.comments.count }})</a>
                 </td>
                 <td>
                     {{post.text}}
